@@ -67,3 +67,12 @@ body {
   background: url( "../img/ship.png" );
   transform: translateX( -50% );
 }
+
+img {
+  display: none;
+}
+
+canvas {
+  position: absolute;
+  z-index: 999;
+}

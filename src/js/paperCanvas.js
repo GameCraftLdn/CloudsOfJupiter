@@ -3,7 +3,8 @@ var canvas = document.getElementById("paperCanvas"),
   canvasWidth = canvas.offsetWidth,
   canvasHeight = canvas.offsetHeight,
   canvasCenter = new Point(canvasWidth / 2, canvasHeight / 2),
-  counter = 0;
+  counter = 0,
+  maxShipSize = 15;
 
 // fuel counter
 var counterElm = document.getElementById( "counter" );
@@ -75,18 +76,12 @@ var shipSize = 1;
 var ship = new Raster( 'ship-0'+ shipSize );
 ship.position = [ canvasWidth / 2, canvasHeight - 80 ];
 
-function growShip() {
-  shipSize += 1;
-
-  if ( shipSize === 15 ) {
-    shipSize = 14;
-  }
-
-  ship.source = 'ship-0' + shipSize;
+function setShipSize(size) {
+  ship.source = 'ship-0' + size;
 }
 
-function collision(group, point, tolerance) {
-  hit = fuelGroup.hitTest(point, {
+function collision(group, point, tolerance, clone) {
+  hit = group.hitTest(point, {
     segments: true,
     stroke: true,
     fill: true,
@@ -94,10 +89,15 @@ function collision(group, point, tolerance) {
   });
   if (hit) {
     hit.item.remove();
-    group.addChild(cloneFuel());
-    ++counter;
+    group.addChild(clone());
+    if (clone === cloneFuel) {
+      ++counter;
+    }
+    if (clone === cloneBaddie) {
+      --counter;
+    }
+    if ( counter % 10 === 0 ) setShipSize(Math.min(counter / 10 + 1, maxShipSize));
     document.getElementById('counter').innerHTML = counter;
-    if ( counter % 10 === 0 ) growShip();
   }
 }
 
@@ -115,9 +115,14 @@ function onFrame( event ) {
   document.getElementById('timer').innerHTML = Math.round(event.time/60) + ":" + (event.time % 60).toFixed(2);
 
   // collision for fuel
-  collision(fuelGroup, ship.bounds.center, Math.min(ship.bounds.width, ship.bounds.height)/2);
-  collision(fuelGroup, ship.bounds.topLeft, 0);
-  collision(fuelGroup, ship.bounds.topRight, 0);
+  collision(fuelGroup, ship.bounds.center, Math.min(ship.bounds.width, ship.bounds.height)/2, cloneFuel);
+  collision(fuelGroup, ship.bounds.topLeft, 0, cloneFuel);
+  collision(fuelGroup, ship.bounds.topRight, 0, cloneFuel);
+
+  // collision for baddies
+  collision(baddiesGroup, ship.bounds.center, Math.min(ship.bounds.width, ship.bounds.height)/2, cloneBaddie);
+  collision(baddiesGroup, ship.bounds.topLeft, 0, cloneBaddie);
+  collision(baddiesGroup, ship.bounds.topRight, 0, cloneBaddie);
 
   // move fuel and baddies down the canvas
   fuelGroup.children.forEach(move);

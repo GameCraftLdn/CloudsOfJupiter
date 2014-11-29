@@ -4,6 +4,10 @@ var     canvas = document.getElementById( "paperCanvas" ),
   canvasHeight = canvas.offsetHeight,
   canvasCenter = new Point( canvasWidth / 2, canvasHeight / 2 );
 
+// fuel counter
+var counterElm = document.getElementById( "counter" );
+var fuelCounter = 0;
+
 // random number wrapper
 function randNum ( min, max ) {
   return Math.floor( Math.random() * max + min );
@@ -73,9 +77,13 @@ function onFrame( event ) {
     }
 
     // if it hits ship remove and add new fuel item
-    if ( ship.hitTest( thisFuel.position, hitOptions ) ){
+    if ( ship.hitTest( thisFuel.position, {
+      segments: true,
+      stroke: true,
+      fill: true,
+      tolerance: thisFuel.bounds.width + 5
+    }) ){
       thisFuel.remove();
-      console.log( "hit" );
 
       var fuelClone = cloneFuel();
           fuelClone.position = [ randNum( 0, canvasWidth ), -10 ];

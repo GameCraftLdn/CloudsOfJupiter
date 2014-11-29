@@ -88,12 +88,36 @@ canvas {
   font-size: 40px;
   border-radius: 2px;
   padding: 0 16px;
+  display: block;
 }
 
 #counter {
   right: 20px;
+  width: 160px;
+  text-align: right;
 }
 
 #timer {
   left: 20px;
+}
+
+#lifes {
+  @include clearfix;
+
+  right: 200px;
+  width: 154px;
+  height: 56px;
+}
+
+.life {
+  float: right;
+  background: url( "../img/life.png" );
+  width: 18px;
+  height: 27px;
+  margin-right: 8px;
+  margin-top: 16px;
+
+  &:first-child {
+    margin-right: 0;
+  }
 }

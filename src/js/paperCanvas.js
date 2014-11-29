@@ -51,7 +51,7 @@ for ( var f = 0; f < fuelItems; f++ ) {
 }
 
 // get ship raster & position
-var ship = new Raster( 'ship' );
+var ship = new Raster( 'ship-01' );
 ship.position = [ canvasWidth / 2, canvasHeight - 80 ];
 
 // animation stuff.
@@ -82,8 +82,8 @@ function onFrame( event ) {
 
   // move ship with gamepad
   if( navigator.getGamepads()[0].axes[ 0 ] < -0.5) {
-    ship.position -= [ 20, 0 ];
+    ship.position -= [ 10, 0 ];
   } else if( navigator.getGamepads()[0].axes[ 0 ] > 0.5 ) {
-    ship.position += [ 20, 0 ];
+    ship.position += [ 10, 0 ];
   }
 }

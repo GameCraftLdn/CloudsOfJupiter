@@ -4,6 +4,7 @@ var canvas = document.getElementById("paperCanvas"),
   canvasHeight = canvas.offsetHeight,
   canvasCenter = new Point(canvasWidth / 2, canvasHeight / 2),
   counter = 0,
+  frameTicker = 1,
   maxShipSize = 15;
 
 // fuel counter
@@ -118,6 +119,13 @@ function move(item) {
 function onFrame( event ) {
   document.getElementById('timer').innerHTML = Math.round(event.time/60) + ":" + (event.time % 60).toFixed(2);
 
+  // get progressively harder
+  if (frameTicker % 100 == 0) {
+    fuelGroup.firstChild.remove();
+    baddiesGroup.addChild(cloneBaddie());
+    console.log("Fuel in game: %d, baddies in game: %d", fuelGroup.children.length, baddiesGroup.children.length);
+  }
+
   // collision for fuel
   collision(fuelGroup, ship.bounds.center, Math.min(ship.bounds.width, ship.bounds.height)/2, cloneFuel);
   collision(fuelGroup, ship.bounds.topLeft, 0, cloneFuel);
@@ -138,4 +146,5 @@ function onFrame( event ) {
   } else if( navigator.getGamepads()[0].axes[ 0 ] > 0.5 ) {
     ship.position += [ 10, 0 ];
   }
+  frameTicker++;
 }

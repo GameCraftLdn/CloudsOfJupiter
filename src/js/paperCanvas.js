@@ -23,20 +23,28 @@ var hitOptions = {
 };
 
 // set up fuel items
-var fuelItems = 20;
+var fuelItems = 50;
 var fuelGroup = new Group();
 
 var fuel = new Path.RegularPolygon({
   center: [ -10, -10],
-  sides: 3,
-  radius: 6,
-  strokeColor: '#4F4',
-  strokeWidth: 2,
+  sides: 6,
+  radius: 30,
+  opacity: 0.35,
+  fillColor: '#4F4',
 }).rotate( 180 );
 
-for ( var f = 0; f < fuelItems; f++ ) {
+function cloneFuel () {
   var fuelClone = fuel.clone();
       fuelClone.position = randPoint();
+      fuelClone.opacity = Math.random() * 0.5 + 0.25;
+      fuelClone.scale( Math.random() * 1 + 0.25 );
+  return fuelClone;
+}
+
+for ( var f = 0; f < fuelItems; f++ ) {
+  var fuelClone = cloneFuel();
+
   fuelGroup.addChild(
     fuelClone
   );
@@ -63,8 +71,9 @@ function onFrame( event ) {
       thisFuel.remove();
       console.log( "hit" );
 
-      var fuelClone = fuel.clone();
+      var fuelClone = cloneFuel();
           fuelClone.position = [ randNum( 0, canvasWidth ), -10 ];
+
       fuelGroup.addChild(
         fuelClone
       );

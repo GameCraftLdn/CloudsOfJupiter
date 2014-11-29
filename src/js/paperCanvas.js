@@ -82,8 +82,10 @@ function setShipSize(size) {
 }
 
 function loseLive() {
-  $('#lifes div:lt(1)').remove();
-  if ($('#lifes div').length == 0) console.log('Game Over!');
+  $('#lifes div:first-child').remove();
+  if ($('#lifes div').length <= 0) {
+    $( '.game-over' ).addClass( 'open' )
+  }
 }
 
 function collision(group, point, tolerance, clone) {
@@ -100,8 +102,7 @@ function collision(group, point, tolerance, clone) {
       ++counter;
     }
     if (clone === cloneBaddie) {
-      --counter;
-      if (counter < 0) loseLive();
+      loseLive();
     }
     if ( counter % 10 === 0 ) {
       level = Math.min(counter / 10 + 1, maxShipSize)

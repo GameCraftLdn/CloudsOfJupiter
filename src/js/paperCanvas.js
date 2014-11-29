@@ -81,6 +81,11 @@ function setShipSize(size) {
   ship.source = 'ship-0' + size;
 }
 
+function loseLive() {
+  $('#lifes div:lt(1)').remove();
+  if ($('#lifes div').length == 0) console.log('Game Over!');
+}
+
 function collision(group, point, tolerance, clone) {
   hit = group.hitTest(point, {
     segments: true,
@@ -96,6 +101,7 @@ function collision(group, point, tolerance, clone) {
     }
     if (clone === cloneBaddie) {
       --counter;
+      if (counter < 0) loseLive();
     }
     if ( counter % 10 === 0 ) {
       level = Math.min(counter / 10 + 1, maxShipSize)

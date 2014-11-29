@@ -1,9 +1,9 @@
 // set up canvas
-var     canvas = document.getElementById( "paperCanvas" ),
-   canvasWidth = canvas.offsetWidth,
+var canvas = document.getElementById("paperCanvas"),
+  canvasWidth = canvas.offsetWidth,
   canvasHeight = canvas.offsetHeight,
-  canvasCenter = new Point( canvasWidth / 2, canvasHeight / 2 ),
-  counter      = 0;
+  canvasCenter = new Point(canvasWidth / 2, canvasHeight / 2),
+  counter = 0;
 
 // fuel counter
 var counterElm = document.getElementById( "counter" );
@@ -18,14 +18,6 @@ function randNum ( min, max ) {
 function randPoint () {
   return new Point( randNum( 0, canvasWidth ), randNum( 0, canvasHeight ) );
 }
-
-// set hittest options
-var hitOptions = {
-  segments: true,
-  stroke: true,
-  fill: true,
-  tolerance: 5
-};
 
 // set up fuel items
 var fuelItems = 50;
@@ -51,11 +43,7 @@ function cloneFuel () {
 
 // add fuel items to group
 for ( var f = 0; f < fuelItems; f++ ) {
-  var fuelClone = cloneFuel();
-
-  fuelGroup.addChild(
-    fuelClone
-  );
+  fuelGroup.addChild(cloneFuel());
 }
 
 // set up fuel items
@@ -71,7 +59,7 @@ var baddie = new Path.RegularPolygon({
   fillColor: '#B00',
 }).rotate(180);
 
-function clonebaddie () {
+function cloneBaddie () {
   var baddieClone = baddie.clone();
       baddieClone.position = randPoint();
       baddieClone.scale( Math.random() * 1 + 0.35 );
@@ -79,11 +67,7 @@ function clonebaddie () {
 }
 
 for ( var f = 0; f < baddiesItems; f++ ) {
-  var baddieClone = clonebaddie();
-
-  baddiesGroup.addChild(
-    baddieClone
-  );
+  baddiesGroup.addChild(cloneBaddie());
 }
 
 // get ship raster & position

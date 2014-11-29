@@ -14,19 +14,31 @@ function randPoint () {
   return new Point( randNum( 0, canvasWidth ), randNum( 0, canvasHeight ) );
 }
 
+// set hittest options
+var hitOptions = {
+  segments: true,
+  stroke: true,
+  fill: true,
+  tolerance: 5
+};
+
 // set up fuel items
 var fuelItems = 20;
 var fuelGroup = new Group();
 
+var fuel = new Path.RegularPolygon({
+  center: [ -10, -10],
+  sides: 3,
+  radius: 6,
+  strokeColor: '#4F4',
+  strokeWidth: 2,
+}).rotate( 180 );
+
 for ( var f = 0; f < fuelItems; f++ ) {
+  var fuelClone = fuel.clone();
+      fuelClone.position = randPoint();
   fuelGroup.addChild(
-    new Path.RegularPolygon({
-      center: randPoint(),
-      sides: 3,
-      radius: 6,
-      strokeColor: '#4F4',
-      strokeWidth: 2,
-    }).rotate( 180 )
+    fuelClone
   );
 }
 
@@ -37,7 +49,7 @@ ship.position = [ canvasWidth / 2, canvasHeight - 80 ];
 // animation stuff.
 function onFrame( event ) {
 
-  // move fuel down screen remove if off screen
+  // handle all fuel items
   for( var f = 0; f < fuelGroup.children.length; f++  ) {
     var thisFuel = fuelGroup.children[ f ];
 
@@ -45,6 +57,17 @@ function onFrame( event ) {
 
     if( thisFuel.bounds.top > canvasHeight ) {
       thisFuel.position = [ randNum( 0, canvasWidth ), 0 ];
+    }
+
+    if ( ship.hitTest( thisFuel.position, hitOptions ) ){
+      thisFuel.remove();
+      console.log( "hit" );
+
+      var fuelClone = fuel.clone();
+          fuelClone.position = [ randNum( 0, canvasWidth ), -10 ];
+      fuelGroup.addChild(
+        fuelClone
+      );
     }
   }
 

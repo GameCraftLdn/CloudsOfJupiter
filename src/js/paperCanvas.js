@@ -33,12 +33,12 @@ var fuelGroup = new Group();
 
 // create fuel item to be cloned.
 var fuel = new Path.RegularPolygon({
-  center: [ -10, -10],
+  center: [ -30, -30],
   sides: 6,
   radius: 30,
   opacity: 0.35,
   fillColor: '#4F4',
-}).rotate( 180 );
+});
 
 // clone fuel item and randomise position, opacity, & scale
 function cloneFuel () {
@@ -55,6 +55,34 @@ for ( var f = 0; f < fuelItems; f++ ) {
 
   fuelGroup.addChild(
     fuelClone
+  );
+}
+
+// set up fuel items
+var baddiesItems = 20;
+var baddiesGroup = new Group();
+
+// create fuel item to be cloned.
+var baddie = new Path.RegularPolygon({
+  center: [ -30, -30],
+  sides: 3,
+  radius: 20,
+  opacity: 0.75,
+  fillColor: '#B00',
+}).rotate(180);
+
+function clonebaddie () {
+  var baddieClone = baddie.clone();
+      baddieClone.position = randPoint();
+      baddieClone.scale( Math.random() * 1 + 0.25 );
+  return baddieClone;
+}
+
+for ( var f = 0; f < baddiesItems; f++ ) {
+  var baddieClone = clonebaddie();
+
+  baddiesGroup.addChild(
+    baddieClone
   );
 }
 
@@ -109,6 +137,16 @@ function onFrame( event ) {
       if ( counter % 10 === 0 ) {
         growShip();
       }
+    }
+  }
+
+  for( var b = 0; b < baddiesGroup.children.length; b++  ) {
+    var thisBaddie = baddiesGroup.children[ b ];
+
+    thisBaddie.position += [ 0, 2 ];
+
+    if( thisBaddie.bounds.top > canvasHeight ) {
+      thisBaddie.position = [ randNum( 0, canvasWidth ), 0 ];
     }
   }
 

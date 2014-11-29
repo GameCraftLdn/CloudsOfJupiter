@@ -2,7 +2,8 @@
 var     canvas = document.getElementById( "paperCanvas" ),
    canvasWidth = canvas.offsetWidth,
   canvasHeight = canvas.offsetHeight,
-  canvasCenter = new Point( canvasWidth / 2, canvasHeight / 2 );
+  canvasCenter = new Point( canvasWidth / 2, canvasHeight / 2 ),
+  counter      = 0;
 
 // fuel counter
 var counterElm = document.getElementById( "counter" );
@@ -84,6 +85,8 @@ function onFrame( event ) {
       tolerance: thisFuel.bounds.width + 5
     }) ){
       thisFuel.remove();
+      ++counter;
+      document.getElementById('counter').innerHTML = counter;
 
       var fuelClone = cloneFuel();
           fuelClone.position = [ randNum( 0, canvasWidth ), -10 ];

@@ -101,55 +101,43 @@ function growShip() {
   ship.source = 'ship-0' + shipSize;
 }
 
+function collision(group, point, tolerance) {
+  hit = fuelGroup.hitTest(point, {
+    segments: true,
+    stroke: true,
+    fill: true,
+    tolerance: tolerance
+  });
+  if (hit) {
+    hit.item.remove();
+    group.addChild(cloneFuel());
+    ++counter;
+    document.getElementById('counter').innerHTML = counter;
+    if ( counter % 10 === 0 ) growShip();
+  }
+}
+
+function move(item) {
+  // move down screen
+  item.position += [0, 2];
+  // if it get to bottom move to top
+  if (item.bounds.top > canvasHeight) {
+    item.position = [randNum(0, canvasWidth), 0];
+  }
+}
+
 // animation stuff.
 function onFrame( event ) {
   document.getElementById('timer').innerHTML = Math.round(event.time/60) + ":" + (event.time % 60).toFixed(2);
-  // only collide with the front of the ship
-  shipFront = Path.Line(ship.bounds.topRight, ship.bounds.topLeft);
 
-  // handle all fuel items
-  fuelGroup.children.forEach( function(thisFuel) {
-    // move down screen
-    thisFuel.position += [ 0, 2 ];
+  // collision for fuel
+  collision(fuelGroup, ship.bounds.center, Math.min(ship.bounds.width, ship.bounds.height)/2);
+  collision(fuelGroup, ship.bounds.topLeft, 0);
+  collision(fuelGroup, ship.bounds.topRight, 0);
 
-    // if it get to bottom move to top
-    if( thisFuel.bounds.top > canvasHeight ) {
-      thisFuel.position = [ randNum( 0, canvasWidth ), 0 ];
-    }
-
-    // if it hits ship remove and add new fuel item
-    if ( shipFront.hitTest( thisFuel.position, {
-      segments: true,
-      stroke: true,
-      fill: true,
-      tolerance: thisFuel.bounds.width
-    }) ){
-      thisFuel.remove();
-      ++counter;
-      document.getElementById('counter').innerHTML = counter;
-
-      var fuelClone = cloneFuel();
-          fuelClone.position = [ randNum( 0, canvasWidth ), -10 ];
-
-      fuelGroup.addChild(
-        fuelClone
-      );
-
-      if ( counter % 10 === 0 ) {
-        growShip();
-      }
-    }
-  });
-
-  for( var b = 0; b < baddiesGroup.children.length; b++  ) {
-    var thisBaddie = baddiesGroup.children[ b ];
-
-    thisBaddie.position += [ 0, 2 ];
-
-    if( thisBaddie.bounds.top > canvasHeight ) {
-      thisBaddie.position = [ randNum( 0, canvasWidth ), 0 ];
-    }
-  }
+  // move fuel and baddies down the canvas
+  fuelGroup.children.forEach(move);
+  baddiesGroup.children.forEach(move);
 
   // move ship with gamepad
   if( navigator.getGamepads()[0].axes[ 0 ] < -0.5) {

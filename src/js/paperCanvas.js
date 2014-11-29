@@ -104,11 +104,11 @@ function growShip() {
 // animation stuff.
 function onFrame( event ) {
   document.getElementById('timer').innerHTML = Math.round(event.time/60) + ":" + (event.time % 60).toFixed(2);
+  // only collide with the front of the ship
   shipFront = Path.Line(ship.bounds.topRight, ship.bounds.topLeft);
-  // handle all fuel items
-  for( var f = 0; f < fuelGroup.children.length; f++  ) {
-    var thisFuel = fuelGroup.children[ f ];
 
+  // handle all fuel items
+  fuelGroup.children.forEach( function(thisFuel) {
     // move down screen
     thisFuel.position += [ 0, 2 ];
 
@@ -139,7 +139,7 @@ function onFrame( event ) {
         growShip();
       }
     }
-  }
+  });
 
   for( var b = 0; b < baddiesGroup.children.length; b++  ) {
     var thisBaddie = baddiesGroup.children[ b ];

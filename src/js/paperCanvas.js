@@ -4,6 +4,7 @@ var canvas = document.getElementById("paperCanvas"),
   canvasHeight = canvas.offsetHeight,
   canvasCenter = new Point(canvasWidth / 2, canvasHeight / 2),
   counter = 0,
+  frameTicker = 1,
   maxShipSize = 15;
 
 // fuel counter
@@ -80,6 +81,11 @@ function setShipSize(size) {
   ship.source = 'ship-0' + size;
 }
 
+function loseLive() {
+  $('#lifes div:lt(1)').remove();
+  if ($('#lifes div').length == 0) console.log('Game Over!');
+}
+
 function collision(group, point, tolerance, clone) {
   hit = group.hitTest(point, {
     segments: true,
@@ -95,6 +101,7 @@ function collision(group, point, tolerance, clone) {
     }
     if (clone === cloneBaddie) {
       --counter;
+      if (counter < 0) loseLive();
     }
     if ( counter % 10 === 0 ) {
       level = Math.min(counter / 10 + 1, maxShipSize)
@@ -118,6 +125,13 @@ function move(item) {
 function onFrame( event ) {
   document.getElementById('timer').innerHTML = Math.round(event.time/60) + ":" + (event.time % 60).toFixed(2);
 
+  // get progressively harder
+  if (frameTicker % 100 == 0) {
+    fuelGroup.firstChild.remove();
+    baddiesGroup.addChild(cloneBaddie());
+    console.log("Fuel in game: %d, baddies in game: %d", fuelGroup.children.length, baddiesGroup.children.length);
+  }
+
   // collision for fuel
   collision(fuelGroup, ship.bounds.center, Math.min(ship.bounds.width, ship.bounds.height)/2, cloneFuel);
   collision(fuelGroup, ship.bounds.topLeft, 0, cloneFuel);
@@ -138,4 +152,5 @@ function onFrame( event ) {
   } else if( navigator.getGamepads()[0].axes[ 0 ] > 0.5 ) {
     ship.position += [ 10, 0 ];
   }
+  frameTicker++;
 }

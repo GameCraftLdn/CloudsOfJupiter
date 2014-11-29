@@ -122,8 +122,8 @@ function onFrame( event ) {
       segments: true,
       stroke: true,
       fill: true,
-      tolerance: thisFuel.bounds.width + 5
-    })){
+      tolerance: thisFuel.bounds.width
+    }) ){
       thisFuel.remove();
       ++counter;
       document.getElementById('counter').innerHTML = counter;

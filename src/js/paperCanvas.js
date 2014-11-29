@@ -58,8 +58,18 @@ for ( var f = 0; f < fuelItems; f++ ) {
 }
 
 // get ship raster & position
-var ship = new Raster( 'ship-01' );
+var shipSize = 1;
+var ship = new Raster( 'ship-0'+ shipSize );
 ship.position = [ canvasWidth / 2, canvasHeight - 80 ];
+
+function growShip() {
+  if ( shipSize === 10 ) {
+    shipSize = 1;
+  }
+
+  shipSize += 1;
+  ship.source = 'ship-0' + shipSize;
+}
 
 // animation stuff.
 function onFrame( event ) {
@@ -82,7 +92,7 @@ function onFrame( event ) {
       stroke: true,
       fill: true,
       tolerance: thisFuel.bounds.width + 5
-    }) ){
+    })){
       thisFuel.remove();
 
       var fuelClone = cloneFuel();
@@ -91,6 +101,8 @@ function onFrame( event ) {
       fuelGroup.addChild(
         fuelClone
       );
+
+      growShip();
     }
   }
 

@@ -96,8 +96,12 @@ function collision(group, point, tolerance, clone) {
     if (clone === cloneBaddie) {
       --counter;
     }
-    if ( counter % 10 === 0 ) setShipSize(Math.min(counter / 10 + 1, maxShipSize));
-    document.getElementById('counter').innerHTML = counter;
+    if ( counter % 10 === 0 ) {
+      level = Math.min(counter / 10 + 1, maxShipSize)
+      setShipSize(level);
+      document.getElementById('level').innerHTML = level;
+    }
+    counterElm.innerHTML = counter;
   }
 }
 

@@ -77,10 +77,9 @@ canvas {
   z-index: 10;
 }
 
-#counter {
+.hud {
   position: absolute;
   top: 20px;
-  right: 20px;
   z-index: 100;
   background: rgba( #000, .5 );
   font-weight: 700;
@@ -89,4 +88,12 @@ canvas {
   font-size: 40px;
   border-radius: 2px;
   padding: 0 16px;
+}
+
+#counter {
+  right: 20px;
+}
+
+#timer {
+  left: 20px;
 }

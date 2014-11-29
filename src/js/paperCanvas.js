@@ -64,7 +64,7 @@ ship.position = [ canvasWidth / 2, canvasHeight - 80 ];
 
 // animation stuff.
 function onFrame( event ) {
-
+  document.getElementById('timer').innerHTML = Math.round(event.time/60) + ":" + (event.time % 60).toFixed(2);
   // handle all fuel items
   for( var f = 0; f < fuelGroup.children.length; f++  ) {
     var thisFuel = fuelGroup.children[ f ];

@@ -93,18 +93,25 @@ canvas {
 
 #counter {
   right: 20px;
-  width: 160px;
+  width: 120px;
   text-align: right;
 }
 
 #timer {
   left: 20px;
+  width: 200px;
+}
+
+#level {
+  left: 240px;
+  width: 80px;
+  text-align: right;
 }
 
 #lifes {
   @include clearfix;
 
-  right: 200px;
+  right: 160px;
   width: 154px;
   height: 56px;
 }

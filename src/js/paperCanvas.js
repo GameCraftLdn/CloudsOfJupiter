@@ -1,9 +1,10 @@
 // set up canvas
-var     canvas = document.getElementById( "paperCanvas" ),
-   canvasWidth = canvas.offsetWidth,
+var canvas = document.getElementById("paperCanvas"),
+  canvasWidth = canvas.offsetWidth,
   canvasHeight = canvas.offsetHeight,
-  canvasCenter = new Point( canvasWidth / 2, canvasHeight / 2 ),
-  counter      = 0;
+  canvasCenter = new Point(canvasWidth / 2, canvasHeight / 2),
+  counter = 0,
+  maxShipSize = 15;
 
 // fuel counter
 var counterElm = document.getElementById( "counter" );
@@ -18,14 +19,6 @@ function randNum ( min, max ) {
 function randPoint () {
   return new Point( randNum( 0, canvasWidth ), randNum( 0, canvasHeight ) );
 }
-
-// set hittest options
-var hitOptions = {
-  segments: true,
-  stroke: true,
-  fill: true,
-  tolerance: 5
-};
 
 // set up fuel items
 var fuelItems = 50;
@@ -51,11 +44,7 @@ function cloneFuel () {
 
 // add fuel items to group
 for ( var f = 0; f < fuelItems; f++ ) {
-  var fuelClone = cloneFuel();
-
-  fuelGroup.addChild(
-    fuelClone
-  );
+  fuelGroup.addChild(cloneFuel());
 }
 
 // set up fuel items
@@ -71,7 +60,7 @@ var baddie = new Path.RegularPolygon({
   fillColor: '#B00',
 }).rotate(180);
 
-function clonebaddie () {
+function cloneBaddie () {
   var baddieClone = baddie.clone();
       baddieClone.position = randPoint();
       baddieClone.scale( Math.random() * 1 + 0.35 );
@@ -79,11 +68,7 @@ function clonebaddie () {
 }
 
 for ( var f = 0; f < baddiesItems; f++ ) {
-  var baddieClone = clonebaddie();
-
-  baddiesGroup.addChild(
-    baddieClone
-  );
+  baddiesGroup.addChild(cloneBaddie());
 }
 
 // get ship raster & position
@@ -91,65 +76,61 @@ var shipSize = 1;
 var ship = new Raster( 'ship-0'+ shipSize );
 ship.position = [ canvasWidth / 2, canvasHeight - 80 ];
 
-function growShip() {
-  shipSize += 1;
+function setShipSize(size) {
+  ship.source = 'ship-0' + size;
+}
 
-  if ( shipSize === 15 ) {
-    shipSize = 14;
+function collision(group, point, tolerance, clone) {
+  hit = group.hitTest(point, {
+    segments: true,
+    stroke: true,
+    fill: true,
+    tolerance: tolerance
+  });
+  if (hit) {
+    hit.item.remove();
+    group.addChild(clone());
+    if (clone === cloneFuel) {
+      ++counter;
+    }
+    if (clone === cloneBaddie) {
+      --counter;
+    }
+    if ( counter % 10 === 0 ) {
+      level = Math.min(counter / 10 + 1, maxShipSize)
+      setShipSize(level);
+      document.getElementById('level').innerHTML = level;
+    }
+    counterElm.innerHTML = counter;
   }
+}
 
-  ship.source = 'ship-0' + shipSize;
+function move(item) {
+  // move down screen
+  item.position += [0, 2];
+  // if it get to bottom move to top
+  if (item.bounds.top > canvasHeight) {
+    item.position = [randNum(0, canvasWidth), 0];
+  }
 }
 
 // animation stuff.
 function onFrame( event ) {
   document.getElementById('timer').innerHTML = Math.round(event.time/60) + ":" + (event.time % 60).toFixed(2);
-  shipFront = Path.Line(ship.bounds.topRight, ship.bounds.topLeft);
-  // handle all fuel items
-  for( var f = 0; f < fuelGroup.children.length; f++  ) {
-    var thisFuel = fuelGroup.children[ f ];
 
-    // move down screen
-    thisFuel.position += [ 0, 2 ];
+  // collision for fuel
+  collision(fuelGroup, ship.bounds.center, Math.min(ship.bounds.width, ship.bounds.height)/2, cloneFuel);
+  collision(fuelGroup, ship.bounds.topLeft, 0, cloneFuel);
+  collision(fuelGroup, ship.bounds.topRight, 0, cloneFuel);
 
-    // if it get to bottom move to top
-    if( thisFuel.bounds.top > canvasHeight ) {
-      thisFuel.position = [ randNum( 0, canvasWidth ), 0 ];
-    }
+  // collision for baddies
+  collision(baddiesGroup, ship.bounds.center, Math.min(ship.bounds.width, ship.bounds.height)/2, cloneBaddie);
+  collision(baddiesGroup, ship.bounds.topLeft, 0, cloneBaddie);
+  collision(baddiesGroup, ship.bounds.topRight, 0, cloneBaddie);
 
-    // if it hits ship remove and add new fuel item
-    if ( shipFront.hitTest( thisFuel.position, {
-      segments: true,
-      stroke: true,
-      fill: true,
-      tolerance: thisFuel.bounds.width
-    }) ){
-      thisFuel.remove();
-      ++counter;
-      document.getElementById('counter').innerHTML = counter;
-
-      var fuelClone = cloneFuel();
-          fuelClone.position = [ randNum( 0, canvasWidth ), -10 ];
-
-      fuelGroup.addChild(
-        fuelClone
-      );
-
-      if ( counter % 10 === 0 ) {
-        growShip();
-      }
-    }
-  }
-
-  for( var b = 0; b < baddiesGroup.children.length; b++  ) {
-    var thisBaddie = baddiesGroup.children[ b ];
-
-    thisBaddie.position += [ 0, 2 ];
-
-    if( thisBaddie.bounds.top > canvasHeight ) {
-      thisBaddie.position = [ randNum( 0, canvasWidth ), 0 ];
-    }
-  }
+  // move fuel and baddies down the canvas
+  fuelGroup.children.forEach(move);
+  baddiesGroup.children.forEach(move);
 
   // move ship with gamepad
   if( navigator.getGamepads()[0].axes[ 0 ] < -0.5) {

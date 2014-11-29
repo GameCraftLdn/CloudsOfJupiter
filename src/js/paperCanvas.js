@@ -64,11 +64,12 @@ var ship = new Raster( 'ship-0'+ shipSize );
 ship.position = [ canvasWidth / 2, canvasHeight - 80 ];
 
 function growShip() {
-  if ( shipSize === 10 ) {
-    shipSize = 1;
+  shipSize += 1;
+
+  if ( shipSize === 15 ) {
+    shipSize = 14;
   }
 
-  shipSize += 1;
   ship.source = 'ship-0' + shipSize;
 }
 
@@ -105,7 +106,9 @@ function onFrame( event ) {
         fuelClone
       );
 
-      growShip();
+      if ( counter % 10 === 0 ) {
+        growShip();
+      }
     }
   }
 

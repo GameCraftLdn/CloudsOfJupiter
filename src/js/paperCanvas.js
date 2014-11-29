@@ -104,6 +104,7 @@ function growShip() {
 // animation stuff.
 function onFrame( event ) {
   document.getElementById('timer').innerHTML = Math.round(event.time/60) + ":" + (event.time % 60).toFixed(2);
+  shipFront = Path.Line(ship.bounds.topRight, ship.bounds.topLeft);
   // handle all fuel items
   for( var f = 0; f < fuelGroup.children.length; f++  ) {
     var thisFuel = fuelGroup.children[ f ];
@@ -117,7 +118,7 @@ function onFrame( event ) {
     }
 
     // if it hits ship remove and add new fuel item
-    if ( ship.hitTest( thisFuel.position, {
+    if ( shipFront.hitTest( thisFuel.position, {
       segments: true,
       stroke: true,
       fill: true,

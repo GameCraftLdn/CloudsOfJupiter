@@ -59,7 +59,7 @@ for ( var f = 0; f < fuelItems; f++ ) {
 }
 
 // set up fuel items
-var baddiesItems = 20;
+var baddiesItems = 10;
 var baddiesGroup = new Group();
 
 // create fuel item to be cloned.
@@ -67,14 +67,14 @@ var baddie = new Path.RegularPolygon({
   center: [ -30, -30],
   sides: 3,
   radius: 20,
-  opacity: 0.75,
+  opacity: 0.85,
   fillColor: '#B00',
 }).rotate(180);
 
 function clonebaddie () {
   var baddieClone = baddie.clone();
       baddieClone.position = randPoint();
-      baddieClone.scale( Math.random() * 1 + 0.25 );
+      baddieClone.scale( Math.random() * 1 + 0.35 );
   return baddieClone;
 }
 

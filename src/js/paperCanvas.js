@@ -26,6 +26,7 @@ var hitOptions = {
 var fuelItems = 50;
 var fuelGroup = new Group();
 
+// create fuel item to be cloned.
 var fuel = new Path.RegularPolygon({
   center: [ -10, -10],
   sides: 6,
@@ -34,6 +35,7 @@ var fuel = new Path.RegularPolygon({
   fillColor: '#4F4',
 }).rotate( 180 );
 
+// clone fuel item and randomise position, opacity, & scale
 function cloneFuel () {
   var fuelClone = fuel.clone();
       fuelClone.position = randPoint();
@@ -42,6 +44,7 @@ function cloneFuel () {
   return fuelClone;
 }
 
+// add fuel items to group
 for ( var f = 0; f < fuelItems; f++ ) {
   var fuelClone = cloneFuel();
 
@@ -61,12 +64,15 @@ function onFrame( event ) {
   for( var f = 0; f < fuelGroup.children.length; f++  ) {
     var thisFuel = fuelGroup.children[ f ];
 
+    // move down screen
     thisFuel.position += [ 0, 2 ];
 
+    // if it get to bottom move to top
     if( thisFuel.bounds.top > canvasHeight ) {
       thisFuel.position = [ randNum( 0, canvasWidth ), 0 ];
     }
 
+    // if it hits ship remove and add new fuel item
     if ( ship.hitTest( thisFuel.position, hitOptions ) ){
       thisFuel.remove();
       console.log( "hit" );

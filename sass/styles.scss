@@ -74,5 +74,17 @@ img {
 
 canvas {
   position: absolute;
-  z-index: 999;
+  z-index: 10;
+}
+
+#counter {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  background: rgba( #000, .5 );
+  font-weight: 700;
+  font-family: monospace;
+  color: #4F4;
+  font-size: 40px;
 }

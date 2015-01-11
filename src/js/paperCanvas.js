@@ -163,6 +163,8 @@ function onFrame( event ) {
 }
 
 function onKeyDown(event) {
+  if (stopped)
+    return;
   if (event.key == 'left') 
     ship.position -= [ 10, 0 ];
   if (event.key == 'right') 
@@ -177,5 +179,6 @@ $( '#start' ).click( function () {
 
 $( '#info-btn' ).click( function () {
   $( '.splash' ).toggleClass( 'open' );
+  stopped = true;
   view.pause();
 });

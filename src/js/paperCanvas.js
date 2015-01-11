@@ -84,7 +84,7 @@ function setShipSize(size) {
 function loseLive() {
   $('#lifes div:first-child').remove();
   if ($('#lifes div').length <= 0) {
-    $( '.game-over' ).addClass( 'open' )
+    $( '.game-over' ).addClass( 'open' );
   }
 }
 
@@ -105,7 +105,7 @@ function collision(group, point, tolerance, clone) {
       loseLive();
     }
     if ( counter % 10 === 0 ) {
-      level = Math.min(counter / 10 + 1, maxShipSize)
+      level = Math.min(counter / 10 + 1, maxShipSize);
       setShipSize(level);
       document.getElementById('level').innerHTML = level;
     }
@@ -127,7 +127,7 @@ function onFrame( event ) {
   document.getElementById('timer').innerHTML = Math.round(event.time/60) + ":" + (event.time % 60).toFixed(2);
 
   // get progressively harder
-  if (frameTicker % 100 == 0) {
+  if (frameTicker % 100 === 0) {
     fuelGroup.firstChild.remove();
     baddiesGroup.addChild(cloneBaddie());
     console.log("Fuel in game: %d, baddies in game: %d", fuelGroup.children.length, baddiesGroup.children.length);

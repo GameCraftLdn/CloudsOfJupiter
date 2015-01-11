@@ -1,0 +1,412 @@
+/* line 5, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%; }
+
+/* line 12, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+body {
+  margin: 0; }
+
+/* line 31, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+  display: block; }
+
+/* line 40, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+audio, canvas, progress, video {
+  display: inline-block;
+  /* 1 */
+  vertical-align: baseline;
+  /* 2 */ }
+
+/* line 47, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+audio:not([controls]) {
+  display: none;
+  height: 0; }
+
+/* line 55, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+[hidden], template {
+  display: none; }
+
+/* line 63, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+a {
+  background: transparent; }
+
+/* line 69, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+a:active, a:hover {
+  outline: 0; }
+
+/* line 77, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+abbr[title] {
+  border-bottom: 1px dotted; }
+
+/* line 83, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+b, strong {
+  font-weight: bold; }
+
+/* line 88, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+dfn {
+  font-style: italic; }
+
+/* line 93, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0; }
+
+/* line 99, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+mark {
+  background: #ff0;
+  color: #000; }
+
+/* line 105, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+small {
+  font-size: 80%; }
+
+/* line 111, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+/* line 118, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+sup {
+  top: -0.5em; }
+
+/* line 122, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+sub {
+  bottom: -0.25em; }
+
+/* line 130, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+img {
+  border: 0; }
+
+/* line 135, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+svg:not(:root) {
+  overflow: hidden; }
+
+/* line 143, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+figure {
+  margin: 1em 40px; }
+
+/* line 148, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+hr {
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0; }
+
+/* line 155, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+pre {
+  overflow: auto; }
+
+/* line 163, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+code, kbd, pre, samp {
+  font-family: monospace, monospace;
+  font-size: 1em; }
+
+/* line 182, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+button, input, optgroup, select, textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0; }
+
+/* line 189, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+button {
+  overflow: visible; }
+
+/* line 198, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+button, select {
+  text-transform: none; }
+
+/* line 208, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */ }
+
+/* line 215, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+button[disabled], html input[disabled] {
+  cursor: default; }
+
+/* line 221, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+button::-moz-focus-inner, input::-moz-focus-inner {
+  border: 0;
+  padding: 0; }
+
+/* line 228, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+input {
+  line-height: normal; }
+
+/* line 238, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+input[type="checkbox"], input[type="radio"] {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0; }
+
+/* line 247, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
+  height: auto; }
+
+/* line 253, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box; }
+
+/* line 263, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+/* line 268, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em; }
+
+/* line 276, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+legend {
+  border: 0;
+  padding: 0; }
+
+/* line 282, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+textarea {
+  overflow: auto; }
+
+/* line 288, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+optgroup {
+  font-weight: bold; }
+
+/* line 296, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/* line 302, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_normalize.scss */
+td, th {
+  padding: 0; }
+
+/* line 22, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+*, *::before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased; }
+
+/* line 28, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+ul {
+  padding: 0;
+  list-style: none; }
+
+/* line 34, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+html, body {
+  background-color: white;
+  color: black;
+  font-family: sans-serif;
+  line-height: 1.4;
+  width: 100%;
+  height: 100%;
+  background: #444;
+  overflow: hidden; }
+
+@-webkit-keyframes scroll {
+  /* line 49, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+  0% {
+    background-position-y: 0; }
+
+  /* line 50, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+  100% {
+    background-position-y: 500000px; } }
+
+@keyframes scroll {
+  /* line 49, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+  0% {
+    background-position-y: 0; }
+
+  /* line 50, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+  100% {
+    background-position-y: 500000px; } }
+
+/* line 53, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+.surface {
+  background: url("../img/surface.png");
+  width: 100%;
+  height: 100%;
+  -webkit-background-size: cover;
+  background-size: cover;
+  position: absolute;
+  -webkit-animation: scroll 3000s infinite linear;
+  animation: scroll 3000s infinite linear; }
+
+/* line 62, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+.ship {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  width: 140px;
+  height: 116px;
+  background: url("../img/ship.png");
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%); }
+
+/* line 72, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+img {
+  display: none; }
+
+/* line 76, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+canvas {
+  position: absolute;
+  z-index: 10; }
+
+/* line 81, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+.hud {
+  position: absolute;
+  top: 20px;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.5);
+  font-weight: 700;
+  font-family: monospace;
+  color: #4F4;
+  font-size: 40px;
+  border-radius: 2px;
+  padding: 0 16px;
+  display: block; }
+
+/* line 95, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+#counter {
+  right: 20px;
+  width: 120px;
+  text-align: right; }
+
+/* line 101, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+#timer {
+  left: 20px;
+  width: 200px; }
+
+/* line 106, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+#level {
+  left: 240px;
+  width: 80px;
+  text-align: right; }
+
+/* line 112, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+#lifes {
+  right: 160px;
+  width: 154px;
+  height: 56px; }
+  /* line 8, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/_mixins.scss */
+  #lifes:after {
+    content: "";
+    display: table;
+    clear: both; }
+
+/* line 120, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+#info-btn {
+  right: 330px;
+  width: 55px;
+  height: 56px;
+  cursor: pointer; }
+  /* line 128, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+  #info-btn:hover {
+    background: rgba(0, 0, 0, 0.75); }
+
+/* line 133, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+.life {
+  float: right;
+  background: url("../img/life.png");
+  width: 18px;
+  height: 27px;
+  margin-right: 8px;
+  margin-top: 16px; }
+  /* line 141, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+  .life:first-child {
+    margin-right: 0; }
+
+/* line 146, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+.info-modal {
+  position: absolute;
+  background: #333333;
+  width: 800px;
+  height: 500px;
+  top: 50%;
+  left: 50%;
+  z-index: 1000;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  display: none; }
+  /* line 158, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+  .info-modal.open {
+    display: block; }
+  /* line 162, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+  .info-modal::after {
+    content: "";
+    position: absolute;
+    background: rgba(51, 51, 51, 0.75);
+    top: -100%;
+    bottom: -100%;
+    left: -100%;
+    right: -100%;
+    z-index: -1; }
+
+/* line 174, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+.logo {
+  width: 247px;
+  height: 397px;
+  background: url("../img/logo.png");
+  margin: 50px 60px; }
+
+/* line 181, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+.intro {
+  position: absolute;
+  width: 350px;
+  top: 50px;
+  bottom: 50px;
+  right: 60px; }
+  /* line 188, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+  .intro p {
+    font-family: monospace;
+    color: #4f4;
+    font-size: 14px;
+    margin: 0 0 14px;
+    font-weight: 700; }
+  /* line 196, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+  .intro img {
+    display: block;
+    margin-bottom: 8px; }
+
+/* line 202, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+button {
+  border: 0;
+  appearance: none;
+  background: transparent;
+  font-family: monospace;
+  color: #4f4;
+  font-size: 17px;
+  font-weight: 700;
+  padding: 0.4em;
+  border: 2px solid #4f4;
+  border-radius: 4px; }
+  /* line 214, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+  button:hover {
+    background: rgba(68, 255, 68, 0.1); }
+
+/* line 219, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+.game-over {
+  width: 400px;
+  height: 200px;
+  padding: 30px; }
+  /* line 225, /data/fr710/projects/hacks/GameCraft/gameCraft/sass/styles.scss */
+  .game-over a, .game-over p {
+    font-family: monospace;
+    color: #4f4;
+    font-size: 40px !important;
+    font-size: 14px;
+    margin: 0 0 14px;
+    font-weight: 700;
+    display: block;
+    text-align: center; }

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title></title> <!-- ADD A TITLE! -->
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <div class="surface"></div>
+
+  <img id ="ship-01" src="../img/ship-01.png">
+  <img id ="ship-02" src="../img/ship-02.png">
+  <img id ="ship-03" src="../img/ship-03.png">
+  <img id ="ship-04" src="../img/ship-04.png">
+  <img id ="ship-05" src="../img/ship-05.png">
+  <img id ="ship-06" src="../img/ship-06.png">
+  <img id ="ship-07" src="../img/ship-07.png">
+  <img id ="ship-08" src="../img/ship-08.png">
+  <img id ="ship-09" src="../img/ship-09.png">
+  <img id ="ship-010" src="../img/ship-10.png">
+  <img id ="ship-011" src="../img/ship-11.png">
+  <img id ="ship-012" src="../img/ship-12.png">
+  <img id ="ship-013" src="../img/ship-13.png">
+  <img id ="ship-014" src="../img/ship-14.png">
+  <img id ="ship-015" src="../img/ship-15.png">
+
+  <canvas id="paperCanvas" resize></canvas>
+
+  <div class="hud" id="counter"></div>
+  <div class="hud" id="level">1</div>
+  <div class="hud" id="timer"></div>
+  <div class="hud" id="lifes">
+    <div class="life"></div>
+    <div class="life"></div>
+    <div class="life"></div>
+    <div class="life"></div>
+    <div class="life"></div>
+  </div>
+  <div class="hud" id="info-btn">
+  ?
+  </div>
+
+  <div class="info-modal splash open">
+    <div class="logo"></div>
+    <div class="intro">
+      <p>You are the pilot Jupiter fuel Cruiser BEE-AT34. </p>
+      <p>Your Mission, to collect as much valuable fuel whilst avoiding dangerous electrical storms.</p>
+      <p>Your onboard AI will highlight clouds of precious Methane gas.</p>
+      <img src="../img/gas.png">
+      <p>As well as deadly electrical storms.</p>
+      <img src="../img/storm.png">
+      <p>As you take on fuel your ship will expand making it more difficult to avoid storms.</p>
+      <button id="start">Start!</button>
+    </div>
+  </div>
+
+  <div class="info-modal game-over">
+    <div class="logo"></div>
+    <div class="intro">
+      <p>GAME OVER</p>
+      <button onClick="javascript:history.go(0)">Start again</button>
+    </div>
+  </div>
+
+  <script src="js/vendor/paper-full.min.js"></script>
+
+  <script src="js/vendor/jquery-2.1.1.min.js"></script>
+
+  <script type="text/paperscript" src="js/paperCanvas.js" canvas="paperCanvas">></script>
+</body>
+</html>

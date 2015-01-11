@@ -155,3 +155,10 @@ function onFrame( event ) {
   }
   frameTicker++;
 }
+
+function onKeyDown(event) {
+  if (event.key == 'left') 
+    ship.position -= [ 10, 0 ];
+  if (event.key == 'right') 
+    ship.position += [ 10, 0 ];
+}

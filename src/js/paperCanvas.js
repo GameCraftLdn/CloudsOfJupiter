@@ -148,9 +148,9 @@ function onFrame( event ) {
   baddiesGroup.children.forEach(move);
 
   // move ship with gamepad
-  if( navigator.getGamepads()[0].axes[ 0 ] < -0.5) {
+  if( navigator.getGamepads()[0] && navigator.getGamepads()[0].axes[ 0 ] < -0.5) {
     ship.position -= [ 10, 0 ];
-  } else if( navigator.getGamepads()[0].axes[ 0 ] > 0.5 ) {
+  } else if( navigator.getGamepads()[0] && navigator.getGamepads()[0].axes[ 0 ] > 0.5 ) {
     ship.position += [ 10, 0 ];
   }
   frameTicker++;

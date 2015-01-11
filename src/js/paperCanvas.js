@@ -5,7 +5,8 @@ var canvas = document.getElementById("paperCanvas"),
   canvasCenter = new Point(canvasWidth / 2, canvasHeight / 2),
   counter = 0,
   frameTicker = 1,
-  maxShipSize = 15;
+  maxShipSize = 15,
+  stopped = true;
 
 // fuel counter
 var counterElm = document.getElementById( "counter" );
@@ -84,6 +85,7 @@ function setShipSize(size) {
 function loseLive() {
   $('#lifes div:first-child').remove();
   if ($('#lifes div').length <= 0) {
+    view.pause();
     $( '.game-over' ).addClass( 'open' );
   }
 }
@@ -124,6 +126,10 @@ function move(item) {
 
 // animation stuff.
 function onFrame( event ) {
+  if (stopped) {
+    view.pause();
+    return;
+  }
   document.getElementById('timer').innerHTML = Math.round(event.time/60) + ":" + (event.time % 60).toFixed(2);
 
   // get progressively harder
@@ -165,8 +171,11 @@ function onKeyDown(event) {
 
 $( '#start' ).click( function () {
   $( '.splash' ).toggleClass( 'open' );
+  stopped = false;
+  view.play();
 });
 
 $( '#info-btn' ).click( function () {
   $( '.splash' ).toggleClass( 'open' );
+  view.pause();
 });

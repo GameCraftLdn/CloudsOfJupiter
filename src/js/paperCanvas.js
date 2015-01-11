@@ -162,3 +162,11 @@ function onKeyDown(event) {
   if (event.key == 'right') 
     ship.position += [ 10, 0 ];
 }
+
+$( '#start' ).click( function () {
+  $( '.splash' ).toggleClass( 'open' );
+});
+
+$( '#info-btn' ).click( function () {
+  $( '.splash' ).toggleClass( 'open' );
+});

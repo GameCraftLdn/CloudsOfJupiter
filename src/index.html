@@ -44,7 +44,7 @@
   ?
   </div>
 
-  <div class="info-modal">
+  <div class="info-modal splash open">
     <div class="logo"></div>
     <div class="intro">
       <p>You are the pilot Jupiter fuel Cruiser BEE-AT34. </p>
@@ -54,20 +54,21 @@
       <p>As well as deadly electrical storms.</p>
       <img src="../img/storm.png">
       <p>As you take on fuel your ship will expand making it more difficult to avoid storms.</p>
-      <button id="start">close</button>
+      <button id="start">Start!</button>
     </div>
   </div>
 
   <div class="info-modal game-over">
-    <p>GAME OVER</p>
-    <a href="javascript:history.go(0)">START AGAIN</a>
+    <div class="logo"></div>
+    <div class="intro">
+      <p>GAME OVER</p>
+      <button onClick="javascript:history.go(0)">Start again</button>
+    </div>
   </div>
 
   <script src="js/vendor/paper-full.min.js"></script>
 
   <script src="js/vendor/jquery-2.1.1.min.js"></script>
-
-  <script src="js/main.js"></script>
 
   <script type="text/paperscript" src="js/paperCanvas.js" canvas="paperCanvas">></script>
 </body>

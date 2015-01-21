@@ -147,7 +147,7 @@ canvas {
   position: absolute;
   background: rgba(#333, 1);
   width: 800px;
-  height: 500px;
+  height: 560px;
   top: 50%;
   left: 50%;
   z-index: 1000;
@@ -193,6 +193,14 @@ canvas {
     font-weight: 700;
   }
 
+  a {
+    color: #e50e47;
+    text-decoration: none;
+  }
+  a:hover {
+    color: #e50e47;
+  }
+
   img {
     display: block;
     margin-bottom: 8px;
@@ -207,6 +215,7 @@ button {
   color: #4f4;
   font-size: 17px;
   font-weight: 700;
+  margin: 0 0 14px;
   padding: 0.4em;
   border: 2px solid #4f4;
   border-radius: 4px;
